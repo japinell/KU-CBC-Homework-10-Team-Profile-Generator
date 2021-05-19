@@ -23,6 +23,11 @@ const employeeQuestions = [
   },
   {
     type: "input",
+    name: "id",
+    message: "What's the employee id? ",
+  },
+  {
+    type: "input",
     name: "email",
     message: "What's the employee email address? ",
   },
@@ -67,7 +72,8 @@ const promptEmployeeProfile = () => {
   //
   inquirer.prompt(employeeQuestions).then((answers) => {
     //
-    return answers.id > 0 && answers.name.length > 1 && answers.email.length > 1;
+    const {name, id, email} = answers;
+    return new Employee(name, id, email);
     //
   }
   //
