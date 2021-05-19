@@ -1,0 +1,3 @@
+//
+// Export objects
+module.exports = {};
