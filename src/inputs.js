@@ -2,7 +2,11 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
-const generateMarkdown = require("./generator");
+//const generateMarkdown = require("./generator");
+const { Employee } = require("../lib/Employee");
+const { Manager } = require("../lib/Manager");
+const { Engineer } = require("../lib/Engineer");
+const { Intern } = require("../lib/Intern");
 const writeFileAsync = util.promisify(fs.writeFile); // WriteFile using promises instead of a callback function
 
 // Questions
@@ -15,7 +19,7 @@ const startQuestions = [
   },
 ];
 
-const employeeQuestions = [
+const empQuestions = [
   {
     type: "input",
     name: "name",
@@ -33,7 +37,7 @@ const employeeQuestions = [
   },
 ];
 
-const managerQuestions = [
+const mgrQuestions = [
   {
     type: "input",
     name: "officeNumber",
@@ -41,7 +45,7 @@ const managerQuestions = [
   },
 ];
 
-const engineerQuestions = [
+const engQuestions = [
   {
     type: "input",
     name: "gitHub",
@@ -49,7 +53,7 @@ const engineerQuestions = [
   },
 ];
 
-const internQuestions = [
+const intQuestions = [
   {
     type: "input",
     name: "school",
@@ -60,55 +64,86 @@ const internQuestions = [
 // Prompt the start questions
 const promptStartQuestions = () => {
   //
-  inquirer.prompt(startQuestions).then((answers) => {
-      //
-      return answers.start;
-      //
-    }
-  };
+  inquirer.prompt(startQuestions).then((startAnswers) => {
+    //
+    return startAnswers.start;
+    //
+  });
+};
 
 // Prompt the employee's profile questions
 const promptEmployeeProfile = () => {
   //
-  inquirer.prompt(employeeQuestions).then((answers) => {
+  inquirer.prompt(empQuestions).then((empAnswers) => {
     //
-    const {name, id, email} = answers;
+    const { name, id, email } = empAnswers;
     return new Employee(name, id, email);
     //
-  }
+  });
   //
 };
 
 // Prompt the team manager's profile questions
 const promptManagerProfile = () => {
   //
-  inquirer.prompt(managerQuestions).then((answers) => {
+  // Manager is an instance of Employee, so read the Employee's properties first and then the Manager's
+  //
+  inquirer.prompt(empQuestions).then((empAnswers) => {
     //
-    return answers.officeNumber.length > 1;
+    inquirer.prompt(mgrQuestions).then((mgrAnswers) => {
+      //
+      const { name, id, email } = empAnswers;
+      const { officeNumber } = mgrAnswers;
+      //
+      return new Manager(name, id, email, officeNumber);
+      //
+    });
     //
-  }
+  });
   //
 };
 
 // Prompt the engineer's profile questions
 const promptEngineerProfile = () => {
+  //
+  // Engineer is an instance of Employee, so read the Employee's properties first and then the Engineer's
+  //
+  inquirer.prompt(empQuestions).then((empAnswers) => {
     //
-    inquirer.prompt(engineerQuestions).then((answers) => {
+    inquirer.prompt(engQuestions).then((engAnswers) => {
       //
-      return answers.gitHub.length > 1;
+      const { name, id, email } = empAnswers;
+      const { gitHub } = engAnswers;
       //
-    }
+      return new Engineer(name, id, email, gitHub);
+      //
+    });
     //
-  };
+  });
+  //
+};
 
-  
 // Prompt the intern's profile questions
-const promptInterProfile = () => {
+const promptInternProfile = () => {
+  //
+  // Intern is an instance of Employee, so read the Employee's properties first and then the Intern's
+  //
+  inquirer.prompt(empQuestions).then((empAnswers) => {
     //
-    inquirer.prompt(internQuestions).then((answers) => {
+    inquirer.prompt(intQuestions).then((intAnswers) => {
       //
-      return answers.school.length > 1;
+      const { name, id, email } = empAnswers;
+      const { school } = intAnswers;
       //
-    }
+      return new Intern(name, id, email, school);
+      //
+    });
     //
-  };
+  });
+  //
+};
+
+//promptEmployeeProfile();
+//promptManagerProfile();
+//promptEngineerProfile();
+//promptInternProfile();

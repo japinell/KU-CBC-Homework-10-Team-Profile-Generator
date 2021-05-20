@@ -2,7 +2,7 @@
 const inputs = require("../src/inputs");
 const employee = require("../lib/Employee");
 
-// Employee test scenarios
+// Employee test scenarios from application's acceptance criteria
 describe("WHEN I start the application", () => {
   test("THEN I am prompted to enter the team manager’s name, employee ID, email address, and office number", () => {
     //
