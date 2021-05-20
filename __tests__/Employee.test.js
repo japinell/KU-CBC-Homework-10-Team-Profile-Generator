@@ -18,14 +18,14 @@ describe("WHEN I start the application", () => {
     //
     const name = "The CEO",
       id = 1,
-      email = "ceo@company.com",
+      eMail = "ceo@company.com",
       role = "Employee";
-    const emp = new Employee(name, id, email);
+    const emp = new Employee(name, id, eMail);
     //
     expect(emp).toBeInstanceOf(Employee);
     expect(emp.getId()).toEqual(id);
     expect(emp.getName()).toEqual(name);
-    expect(emp.getEmail()).toEqual(email);
+    expect(emp.getEmail()).toEqual(eMail);
     expect(emp.getRole()).toEqual(role);
     //
   });
