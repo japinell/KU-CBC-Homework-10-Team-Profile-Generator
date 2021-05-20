@@ -1,33 +1,26 @@
 //
-const {
-  promptStartQuestions,
-  promptEmployeeProfile,
-  promptManagerProfile,
-  promptEngineerProfile,
-  promptInternProfile,
-} = require("../src/inputs");
 const { Employee } = require("../lib/Employee");
 //
 // Employee test scenarios based on application's acceptance criteria
 //
 describe("WHEN I start the application", () => {
+  //
   test("THEN I am prompted to enter the team manager’s name, employee ID, email address, and office number", () => {
     //
-    //const start = promptStartQuestions();
-    //
-    //if (start) {
-    //
-    const emp = promptEmployeeProfile();
+    const name = "Employee1",
+      id = 1,
+      email = "emp1@email.com";
+    const emp = new Employee(name, id, email);
     //
     expect(emp).toBeInstanceOf(Employee);
-    expect(emp).toHaveProperty("name");
-    expect(emp).toHaveProperty("id").toBeGreaterThan;
-    expect(emp).toHaveProperty("email");
-    //
-    //}
+    expect(emp.getId()).toEqual(id);
+    expect(emp.getName()).toEqual(name);
+    expect(emp.getEmail()).toEqual(email);
     //
   });
+  //
 });
+//
 
 /*
 // Test scenarios - Based on acceptance criteria
