@@ -13,7 +13,6 @@ const {
 describe("WHEN I select the engineer option", () => {
   test("THEN I am prompted to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu", () => {
     //
-    //
     // const mgr = promptEngineerProfile();  // Should return an Engineer instance
     //
     const name = "The Engineer",
