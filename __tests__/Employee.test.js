@@ -1,27 +1,35 @@
-// Import packages/libraries/classes needed
-const inputs = require("../src/inputs");
-const employee = require("../lib/Employee");
-
-// Employee test scenarios from application's acceptance criteria
+//
+const {
+  promptStartQuestions,
+  promptEmployeeProfile,
+  promptManagerProfile,
+  promptEngineerProfile,
+  promptInternProfile,
+} = require("../src/inputs");
+const { Employee } = require("../lib/Employee");
+//
+// Employee test scenarios based on application's acceptance criteria
+//
 describe("WHEN I start the application", () => {
   test("THEN I am prompted to enter the team manager’s name, employee ID, email address, and office number", () => {
     //
-    const start = inputs.promptStartQuestions();
+    //const start = promptStartQuestions();
     //
-    if (start) {
-      //
-      const emp = inputs.promptEmployeeProfile();
-      //
-      expect(emp).toBeInstanceOf(Employee);
-      expect(emp).toHaveProperty("name");
-      expect(emp).toHaveProperty("id").toBeGreaterThan;
-      expect(emp).toHaveProperty("email");
-      //
-    }
+    //if (start) {
+    //
+    const emp = promptEmployeeProfile();
+    //
+    expect(emp).toBeInstanceOf(Employee);
+    expect(emp).toHaveProperty("name");
+    expect(emp).toHaveProperty("id").toBeGreaterThan;
+    expect(emp).toHaveProperty("email");
+    //
+    //}
     //
   });
 });
 
+/*
 // Test scenarios - Based on acceptance criteria
 describe("WHEN I am prompted for my team members and their information", () => {
   // THEN an HTML file is generated that displays a nicely formatted team roster based on user input
@@ -39,3 +47,4 @@ describe("WHEN I decide to finish building my team", () => {
   // THEN I exit the application, and the HTML is generated
   expect(generator.generateHTMLFile()).toBe(true);
 });
+*/
