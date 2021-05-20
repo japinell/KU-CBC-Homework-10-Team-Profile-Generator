@@ -1,5 +1,12 @@
 //
 const { Employee } = require("../lib/Employee");
+const {
+  promptStart,
+  promptEmployeeProfile,
+  promptManagerProfile,
+  promptEngineerProfile,
+  promptInternProfile,
+} = require("../src/inputs");
 //
 // Employee test scenarios based on application's acceptance criteria
 //
@@ -7,15 +14,19 @@ describe("WHEN I start the application", () => {
   //
   test("THEN I am prompted to enter the team manager’s name, employee ID, email address, and office number", () => {
     //
-    const name = "Employee1",
+    // const emp = promptEmployeeProfile(); // Should return an Employee instance
+    //
+    const name = "The CEO",
       id = 1,
-      email = "emp1@email.com";
+      email = "ceo@company.com",
+      role = "Employee";
     const emp = new Employee(name, id, email);
     //
     expect(emp).toBeInstanceOf(Employee);
     expect(emp.getId()).toEqual(id);
     expect(emp.getName()).toEqual(name);
     expect(emp.getEmail()).toEqual(email);
+    expect(emp.getRole()).toEqual(role);
     //
   });
   //
