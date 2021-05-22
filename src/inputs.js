@@ -21,6 +21,17 @@ const startQuestions = [
 
 const empQuestions = [
   {
+    type: "list",
+    name: "empType",
+    message: "What's the employee role'? ",
+    choices: [
+      { value: "M", name: "Manager" },
+      { value: "E", name: "Engineer" },
+      { value: "I", name: "Intern" },
+    ],
+    default: "M",
+  },
+  {
     type: "input",
     name: "name",
     message: "What's the employee name? ",
@@ -43,6 +54,18 @@ const mgrQuestions = [
     name: "officeNumber",
     message: "What's the manager's office number? ",
   },
+  {
+    type: "list",
+    name: "more",
+    message: "Do you want to enter another employee? ",
+    choices: [
+      { value: "M", name: "Manager" },
+      { value: "E", name: "Engineer" },
+      { value: "I", name: "Intern" },
+      { value: "N", name: "No, finish" },
+    ],
+    default: "M",
+  },
 ];
 
 const engQuestions = [
@@ -50,6 +73,18 @@ const engQuestions = [
     type: "input",
     name: "gitHub",
     message: "What's the engineer's GitHub username? ",
+  },
+  {
+    type: "list",
+    name: "empType",
+    message: "Do you want to enter another employee? ",
+    choices: [
+      { value: "M", name: "Manager" },
+      { value: "E", name: "Engineer" },
+      { value: "I", name: "Intern" },
+      { value: "N", name: "No, finish" },
+    ],
+    default: "E",
   },
 ];
 
@@ -59,14 +94,33 @@ const intQuestions = [
     name: "school",
     message: "What's the intern's school name? ",
   },
+  {
+    type: "list",
+    name: "empType",
+    message: "Do you want to enter another employee? ",
+    choices: [
+      { value: "M", name: "Manager" },
+      { value: "E", name: "Engineer" },
+      { value: "I", name: "Intern" },
+      { value: "N", name: "No, finish" },
+    ],
+    default: "I",
+  },
 ];
 
+// All answers
+let allAnswers = [];
+
 // Prompt the start questions
-const promptStartQuestions = () => {
+const promptStart = () => {
   //
   inquirer.prompt(startQuestions).then((startAnswers) => {
     //
-    return startAnswers.start;
+    if (startAnswers.start) {
+      //
+      promptEmployeeProfile();
+      //
+    }
     //
   });
 };
@@ -76,8 +130,21 @@ const promptEmployeeProfile = () => {
   //
   inquirer.prompt(empQuestions).then((empAnswers) => {
     //
-    const { name, id, email } = empAnswers;
-    return new Employee(name, id, email);
+    const empType = empAnswers.empType;
+    //
+    switch (empType) {
+      //
+      case "M":
+        promptManagerProfile();
+      case "E":
+        promptEngineerProfile();
+      case "I":
+        promptInternProfile();
+      //
+    }
+    // //
+    // const { name, id, email } = empAnswers;
+    // return new Employee(name, id, email);
     //
   });
   //
@@ -94,8 +161,25 @@ const promptManagerProfile = () => {
       //
       const { name, id, email } = empAnswers;
       const { officeNumber } = mgrAnswers;
+      const empType = mgrAnswers.more;
       //
-      return new Manager(name, id, email, officeNumber);
+      console.log(mgrAnswers);
+      //
+      switch (empType) {
+        //
+        case "M":
+          promptManagerProfile();
+        case "E":
+          promptEngineerProfile();
+        case "I":
+          promptInternProfile();
+        default:
+          console.log("Done");
+        //
+      }
+      //
+      //
+      //return new Manager(name, id, email, officeNumber);
       //
     });
     //
@@ -143,7 +227,16 @@ const promptInternProfile = () => {
   //
 };
 
+promptStart();
 //promptEmployeeProfile();
 //promptManagerProfile();
 //promptEngineerProfile();
 //promptInternProfile();
+
+module.exports = {
+  promptStart,
+  promptEmployeeProfile,
+  promptManagerProfile,
+  promptEngineerProfile,
+  promptInternProfile,
+};
