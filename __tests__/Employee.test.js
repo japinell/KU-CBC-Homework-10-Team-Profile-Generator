@@ -1,14 +1,53 @@
 //
+const inputs = require("../src/inputs");
+//const axios = require("axios");
 const { Employee } = require("../lib/Employee");
-const {
-  promptStart,
-  promptEmployeeProfile,
-  promptManagerProfile,
-  promptEngineerProfile,
-  promptInternProfile,
-} = require("../src/inputs");
 //
 // Employee test scenarios based on application's acceptance criteria
+//
+jest.mock("../src/inputs");
+//
+describe("GIVEN a command-line application that accepts user input", () => {
+  //
+  test("WHEN I am prompted for my team members and their information", () => {
+    //
+    // Mock the "promptEmployeeProfile" function, which asks the user to start the application
+    //
+    inputs.promptEmployeeProfile.mockReturnValue(
+      //
+      new Promise((resolve) => {
+        //
+        resolve({ data: {} });
+        //
+      })
+      //
+    );
+    //
+    expect(inputs.promptEmployeeProfile()).resolves.toHaveBeenCalled();
+    expect(inputs.promptEmployeeProfile()).resolves.toHaveReturned();
+    expect(inputs.promptEmployeeProfile()).resolves.toEqual({ data: {} });
+    //
+  });
+  //
+  test("THEN I am prompted to enter the team manager’s name, employee ID, email address, and office number", () => {
+    //
+    // const emp = promptEmployeeProfile(); // Should return an Employee instance
+    //
+    const name = "The CEO",
+      id = 1,
+      eMail = "ceo@company.com",
+      role = "Employee";
+    const emp = new Employee(name, id, eMail);
+    //
+    expect(emp).toBeInstanceOf(Employee);
+    expect(emp.getId()).toEqual(id);
+    expect(emp.getName()).toEqual(name);
+    expect(emp.getEmail()).toEqual(eMail);
+    expect(emp.getRole()).toEqual(role);
+    //
+  });
+  //
+});
 //
 describe("WHEN I start the application", () => {
   //
