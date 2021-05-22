@@ -1,6 +1,5 @@
 //
 const inputs = require("../src/inputs");
-//const axios = require("axios");
 const { Employee } = require("../lib/Employee");
 //
 // Employee test scenarios based on application's acceptance criteria

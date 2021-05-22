@@ -78,11 +78,20 @@ const employeeQuestions = [
     name: "more",
     message: "Do you want to enter more employees?",
   },
+  {
+    type: "input",
+    name: "filename",
+    message: "Enter the filename where to save the team roster: ",
+    default: "roster.html",
+    when: function (answers) {
+      return !answers.more;
+    },
+  },
 ];
 //
 const teamRoster = [];
 //
-// Initializes the application
+// Initialize the application
 //
 function promptStartQuestions() {
   //
@@ -96,9 +105,8 @@ function promptStartQuestions() {
     //
   });
 }
-
 //
-// Prompts the employee questions
+// Prompts for the employee questions
 //
 function promptEmployeeQuestions() {
   //
@@ -108,18 +116,18 @@ function promptEmployeeQuestions() {
     //
     // Employee type is guaranteed to be any of the following
     //
-    console.log(answers);
+    switch (empType) {
+      //
+      case "M":
+        teamRoster.push(new Manager(name, id, email, officeNumber));
+      case "E":
+        teamRoster.push(new Engineer(name, id, email, gitHub));
+      case "I":
+        teamRoster.push(new Intern(name, id, email, school));
+      //
+    }
     //
-    // switch (empType) {
-    //   case "M":
-    //     return new Manager(name, id, email, officeNumber);
-    //   case "E":
-    //     return new Engineer(name, id, email, gitHub);
-    //   case "I":
-    //     return new Intern(name, id, email, school);
-    // }
-    //
-    teamRoster.push(answers);
+    //teamRoster.push(answers);
     //
     if (answers.more) {
       //
@@ -128,6 +136,14 @@ function promptEmployeeQuestions() {
     } else {
       //
       console.log(teamRoster);
+      const fileName = answers.fileName;
+      const generator = new Generator(fileName, teamRoster);
+      //
+      //   const headerHTML = generator.getHeaderHTML();
+      //   const footerHTML = generator.getFooterHTML();
+      //   const rosterHTML = generator.getRosterHTML();
+      //
+      generator.writeToFile();
       //
     }
     //

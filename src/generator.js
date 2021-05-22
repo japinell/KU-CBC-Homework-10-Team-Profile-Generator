@@ -6,10 +6,10 @@ const writeFileAsync = util.promisify(fs.writeFile); // WriteFile using promises
 // Generate markdown for team roster
 //
 class Generator {
-  // Constructor
-  constructor(fileName, markDown) {
+  // Constructors
+  constructor(fileName, roster) {
     this.fileName = fileName;
-    this.markDown = markDown;
+    this.roster = roster;
   }
   // Methods
   getFileName() {
@@ -18,9 +18,9 @@ class Generator {
     //
   }
   //
-  getMarkdown() {
+  getRoster() {
     //
-    return this.markDown;
+    return this.roster;
     //
   }
   //
@@ -135,9 +135,7 @@ class Generator {
   //
   getRosterHTML() {
     //
-    let rosterHTML;
-    //
-    rosterHTML = ` <!-- Main -->
+    let rosterHTML = ` <!-- Main -->
     <main>
       <!-- Team Roster -->
     <section id="roster">
@@ -152,19 +150,40 @@ class Generator {
       <!-- End of Header -->
       <!-- Team Members -->
       <div class="card row no-gutters" id="myTeamRoster">
-        <div class="card" style="width: 18rem;">
+      `;
+    //
+    for (let i = 0, emp = this.roster[i]; i < this.roster.length; i++) {
+      //
+      rosterHTML += `<div class="card" style="width: 18rem;">
           <div class="card-header text-white bg-primary">
-            <p id="empName">Jared</p>
-            <p id="empRole">Manager</p>
+            <p id="empName">${emp.getName()}</p>
+            <p id="empRole">${emp.getRole()}</p>
           </div>          
           <div class="card-body">
             <ul class="list-group ">
-              <li class="list-group-item">ID: <span id="empId">Cras justo odio</span></li>
-              <li class="list-group-item">Email: <span id="empEMail">ac facilisis in</span> </li>
-              <li class="list-group-item">Office Number: <span id="empPhone">at eros</span> </li>
+              <li class="list-group-item">ID: <span id="empId">${emp.getId()}</span></li>
+              <li class="list-group-item">Email: <span id="empEMail">${emp.getEmail()}</span> </li>`;
+      if (emp.getRole() === "M") {
+        //
+        rosterHTML += `<li class="list-group-item">Office Number: <span id="empPhone">${emp.getOfficeNumber()}</span> </li>`;
+        //
+      } else if (emp.getRole() === "E") {
+        //
+        rosterHTML += `<li class="list-group-item">GitHub: <span id="gitHub">${emp.getGitHub()}</span> </li>`;
+        //
+      } else {
+        //
+        rosterHTML += `<li class="list-group-item">School: <span id="gitHub">${emp.getSchool()}</span> </li>`;
+        //
+      }
+      //
+      rosterHTML += `
             </ul>
-          </div>          
-        </div>
+          </div>`;
+      //
+    }
+    //
+    rosterHTML += `</div>
     </section>
     <!-- End of Team Members -->
     </main>
@@ -174,9 +193,15 @@ class Generator {
     //
   }
   //
+  generateFullHTML() {
+    //
+    return getHeaderHTML() + getRosterHTML() + getFooterHTML();
+    //
+  }
+  //
   writeToFile() {
     //
-    writeFileAsync(this.fileName, generateMarkdown(this.markDown))
+    writeFileAsync(this.fileName, generateFullHTML())
       .then(() => console.log(`Successfully created file ${this.fileName}.`))
       .catch((err) => console.log(`Error: ${err}`));
     //
