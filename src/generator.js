@@ -97,17 +97,13 @@ class Generator {
           </nav>
           <!-- End of Menu -->
         </header>
-        <!-- End of Header -->
-          `;
+        <!-- End of Header -->`;
     //
   }
   //
   getFooterHTML() {
     //
-    return `
-    </main>
-    <!-- End of Main -->
-    <!-- JavaScript Libraries -->
+    return ` <!-- JavaScript Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
@@ -135,59 +131,72 @@ class Generator {
   //
   getRosterHTML() {
     //
-    let rosterHTML = ` <!-- Main -->
+    let rosterHTML = `<!-- Main -->
     <main>
       <!-- Team Roster -->
-    <section id="roster">
-      <!-- Header -->
-      <h1 class="display-4 text-center">
-        Team Roster
-        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#myTeamRoster"
-          aria-expanded="false" aria-controls="myTeamRoster" id="showMyTeamRoster">
-          <i class="fas fa-chevron-up" aria-hidden="true" id="showMyTeamRosterIcon"></i>
-        </button>
-      </h1>
-      <!-- End of Header -->
-      <!-- Team Members -->
-      <div class="card row no-gutters" id="myTeamRoster">
-      `;
+      <section id="roster">
+        <!-- Header -->
+        <h1 class="display-4 text-center">
+          Team Roster
+          <button
+            class="btn btn-primary"
+            type="button"
+            data-toggle="collapse"
+            data-target="#myTeamRoster"
+            aria-expanded="false"
+            aria-controls="myTeamRoster"
+            id="showMyTeamRoster"
+          >
+            <i
+              class="fas fa-chevron-up"
+              aria-hidden="true"
+              id="showMyTeamRosterIcon"
+            ></i>
+          </button>
+        </h1>
+        <!-- End of Header -->
+        <!-- Team Members -->
+        <div class="row no-gutters">`;
     //
     for (let i = 0, emp = this.roster[i]; i < this.roster.length; i++) {
       //
-      rosterHTML += `<div class="card" style="width: 18rem;">
-          <div class="card-header text-white bg-primary">
-            <p id="empName">${emp.getName()}</p>
-            <p id="empRole">${emp.getRole()}</p>
-          </div>          
-          <div class="card-body">
-            <ul class="list-group ">
-              <li class="list-group-item">ID: <span id="empId">${emp.getId()}</span></li>
-              <li class="list-group-item">Email: <span id="empEMail">${emp.getEmail()}</span> </li>`;
+      rosterHTML += `<div class="col-3 card">
+      <div class="card-header text-white bg-primary">
+        <p>${emp.getName()}</p>
+        <p>${emp.getRoleName()}</p>
+      </div>
+      <div class="card-body">
+        <ul class="list-group">
+          <li class="list-group-item">ID: <span>${emp.getId()}</span></li>
+          <li class="list-group-item">
+            Email: <span id="empEMail">${emp.getEmail()}</span>
+          </li>
+          <li class="list-group-item">`;
+      //
       if (emp.getRole() === "M") {
         //
-        rosterHTML += `<li class="list-group-item">Office Number: <span id="empPhone">${emp.getOfficeNumber()}</span> </li>`;
+        rosterHTML += `
+              Office Number: <span>${emp.getOfficeNumber()}</span>`;
         //
       } else if (emp.getRole() === "E") {
         //
-        rosterHTML += `<li class="list-group-item">GitHub: <span id="gitHub">${emp.getGitHub()}</span> </li>`;
+        rosterHTML += `
+              GitHub: <span>${emp.getGitHub()}</span>`;
         //
       } else {
         //
-        rosterHTML += `<li class="list-group-item">School: <span id="gitHub">${emp.getSchool()}</span> </li>`;
+        rosterHTML += `
+              School: <span>${emp.getSchool()}</span>`;
         //
       }
       //
-      rosterHTML += `
-            </ul>
-          </div>`;
-      //
     }
     //
-    rosterHTML += `</div>
-    </section>
-    <!-- End of Team Members -->
-    </main>
-    <!-- End of Main -->`;
+    rosterHTML += `
+        </li>
+      </ul>
+    </div>
+  </div>`;
     //
     return rosterHTML;
     //
