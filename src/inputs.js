@@ -163,8 +163,6 @@ const promptManagerProfile = () => {
       const { officeNumber } = mgrAnswers;
       const empType = mgrAnswers.more;
       //
-      console.log(mgrAnswers);
-      //
       switch (empType) {
         //
         case "M":

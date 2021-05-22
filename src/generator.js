@@ -195,15 +195,25 @@ class Generator {
   //
   generateFullHTML() {
     //
-    return getHeaderHTML() + getRosterHTML() + getFooterHTML();
+    return this.getHeaderHTML() + this.getRosterHTML() + this.getFooterHTML();
     //
   }
   //
   writeToFile() {
     //
-    writeFileAsync(this.fileName, generateFullHTML())
+    writeFileAsync(this.fileName, this.generateFullHTML())
       .then(() => console.log(`Successfully created file ${this.fileName}.`))
       .catch((err) => console.log(`Error: ${err}`));
+    //
+  }
+  //
+  writeToFile2() {
+    //
+    fs.writeFile(this.fileName, this.generateFullHTML(), (err) =>
+      err
+        ? console.error(`Error: ${err}`)
+        : console.log(`Successfully created file ${this.fileName}.`)
+    );
     //
   }
   //

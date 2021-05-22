@@ -80,7 +80,7 @@ const employeeQuestions = [
   },
   {
     type: "input",
-    name: "filename",
+    name: "fileName",
     message: "Enter the filename where to save the team roster: ",
     default: "roster.html",
     when: function (answers) {
@@ -129,13 +129,13 @@ function promptEmployeeQuestions() {
     //
     //teamRoster.push(answers);
     //
+    console.log(answers);
     if (answers.more) {
       //
       promptEmployeeQuestions();
       //
     } else {
       //
-      console.log(teamRoster);
       const fileName = answers.fileName;
       const generator = new Generator(fileName, teamRoster);
       //
