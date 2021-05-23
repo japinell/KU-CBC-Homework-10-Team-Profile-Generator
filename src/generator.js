@@ -163,7 +163,7 @@ class Generator {
       //
       emp = this.roster[i];
       //
-      rosterHTML += `<div class="col-3 card m-1">
+      rosterHTML += `<div class="col-3 card m-1 shadow p-3 mb-5 bg-white rounded">
       <div class="card-header text-white bg-primary">
         <p class="m-0">${emp.getName()}</p>
         <p class="m-0">`;

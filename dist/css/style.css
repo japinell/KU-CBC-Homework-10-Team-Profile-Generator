@@ -1,0 +1,51 @@
+/*
+  VARIABLES    
+*/
+:root {
+  --working-area: 100%;
+  --chocoyo-green: #276721;
+  --chocoyo-dark-green: #0c1b07;
+  --chocoyo-yellow: #969c24;
+  --flower-orange: #ef6100;
+  --screen-size-xs: 0;
+  --screen-size-sm: 576px;
+  --screen-size-md: 768px;
+  --screen-size-lg: 992px;
+  --screen-size-xl: 1200px;
+  --header-font-family: "Papyrus", "Montserrat", "Sans-Serif";
+  --body-font-family: "Montserrat", "Sans-Serif";
+  --nav-font-family: "Gill Sans", "Gill Sans MT", "Calibri", "Trebuchet MS",
+    "Sans-Serif";
+  --fsize: 10px;
+}
+
+/*
+    GENERAL    
+  */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--body-font-family);
+  line-height: 1.7rem;
+  background-color: white;
+}
+
+header {
+  background-color: var(--chocoyo-dark-green);
+  color: var(--chocoyo-yellow);
+  border: 1px dashed var(--chocoyo-dark-green);
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: white;
+  border-bottom: 2px solid yellow;
+}

@@ -150,7 +150,11 @@ function promptEmployeeQuestions() {
 //
 // Rock & Roll
 //
-//promptStartQuestions();
+// promptStartQuestions();
+//
+// **********************************************************************************************************************************
+//
+// The following code is for testing purposes only:
 //
 teamRoster.push(new Manager("Employee1", "1", "Email1", "1"));
 teamRoster.push(
