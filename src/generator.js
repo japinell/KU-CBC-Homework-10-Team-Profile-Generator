@@ -136,8 +136,8 @@ class Generator {
     <main>
       <!-- Header -->
       <h1 class="display-4 text-center">
-        Team Roster
-        <button
+        My Team Roster
+        <!-- <button
           class="btn btn-primary"
           type="button"
           data-toggle="collapse"
@@ -151,10 +151,10 @@ class Generator {
             aria-hidden="true"
             id="showMyTeamRosterIcon"
           ></i>
-        </button>
+        </button> -->
       </h1>
       <!-- End of Header -->
-      <div id="myTeamRoster" class="card-deck no-gutters d-flex justify-content-center">`;
+      <div id="myTeamRoster" class="row no-gutters d-flex justify-content-center">`;
     //
     for (let i = 0, emp; i < this.roster.length; i++) {
       //
@@ -163,7 +163,7 @@ class Generator {
       //
       emp = this.roster[i];
       //
-      rosterHTML += `<div class="col-3 card">
+      rosterHTML += `<div class="col-3 card m-1">
       <div class="card-header text-white bg-primary">
         <p class="m-0">${emp.getName()}</p>
         <p class="m-0">`;

@@ -157,6 +157,10 @@ teamRoster.push(
   new Engineer("Employee2", "2", "japinell@yahoo.com", "japinell")
 );
 teamRoster.push(new Intern("Employee3", "3", "Email3", "School"));
+teamRoster.push(new Intern("Employee4", "4", "japinell@yahoo.com", "School"));
+teamRoster.push(
+  new Engineer("Employee5", "5", "japinell@yahoo.com", "japinell")
+);
 //
 const fileName = "roster.html";
 const generator = new Generator(fileName, teamRoster);
