@@ -15,7 +15,7 @@ describe("GIVEN a command-line application that accepts user input", () => {
       //
       expect(gen).toBeInstanceOf(Generator);
       expect(gen.getFileName()).toEqual(fileName);
-      expect(gen.getMarkdown()).toEqual(data);
+      expect(gen.getRoster()).toEqual(data);
       //
       // TODO: Mock the "writeToFile" function, which generates the team roster based on user input
       //
