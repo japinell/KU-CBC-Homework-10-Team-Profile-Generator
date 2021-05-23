@@ -75,7 +75,7 @@ const employeeQuestions = [
     name: "gitHub",
     message: "What's the engineer's GitHub username? ",
     validate: (answer) => {
-      return validateAlphaNumericInput(answer);
+      return answer.length > 1;
     },
     when: function (answers) {
       return answers.empType === "E";

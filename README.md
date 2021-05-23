@@ -67,7 +67,7 @@ If you want to cancel the application execution, press the following command in 
 CTRL + C
 ```
 
-A link to a walkthrough video demonstrating the application functionality is provided [here](https://drive.google.com/file/d/1JgqGP5NtRl3KXU8ID2EaU0vYTp6aNsJf/view).
+A link to a walkthrough video demonstrating the application functionality is provided [here](https://drive.google.com/file/d/1C78ZRwOAJkPUPp96jouGpzFw-bIt1IXp/view).
 
 ## License
 
