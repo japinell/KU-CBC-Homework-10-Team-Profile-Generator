@@ -42,7 +42,7 @@ THEN I exit the application, and the HTML is generated
 
 ## Installation
 
-This application requires **Node.js** JavaScript Runtime, **Inquirer.js** and **Jest** packages. Basic knowledge of Node.js is recommended to run the application. To faciliate the installation of the application, a _package.json_ file is provided with the project. Execute the following command in your console to install Inquirer:
+This application requires **Node.js** JavaScript Runtime, **Inquirer.js** and **Jest** packages. Basic knowledge of Node.js is recommended to run the application. To faciliate the installation of the application, a _package.json_ file is provided with the project. Execute the following command in your console to install Inquirer and Jest:
 
 ```bash
 npm i inquirer
@@ -61,7 +61,7 @@ Follow the prompts noticing that some of the questions have pre-defined input va
 
 A sample output of the application is provided [here](https://github.com/japinell/KU-CBC-Homework-10-Team-Profile-Generator/blob/main/roster.html).
 
-If you want to cancel the application execution, press the following command in Microsoft Windows, or equivalent commands in Mac OS and Linux, to stop the execution of the application:
+If you want to cancel the application execution, press the following command in Microsoft Windows, or equivalent commands in Mac OS and Linux:
 
 ```bash
 CTRL + C
@@ -75,7 +75,9 @@ This project is licensed under The MIT License. Refer to https://opensource.org/
 
 ## Features
 
-The application features the generation of a team roster HTML file with information gathered from user input. An important aspect is the use of object-oriented concepts like classes, inheritance, and extensibility to hold an array of objects in memory before it is rendered to the file. The application was also designed with a test-driven approach in mind. Several test scenarios were created to mimic the application functionality before writing the actual functionality.
+The application features the generation of a team roster HTML file with information gathered from user input. An important aspect in the implementation of the application is the use of object-oriented concepts like classes, inheritance, and extensibility. An array holds the objects created before it is rendered to the HTML file using helper classes.
+
+Another important aspect is that the application was also designed with a test-driven approach in mind. Several test scenarios were created to mock the application functionality before writing the actual code.
 
 Future development:
 
@@ -83,7 +85,7 @@ Future development:
 
 ## Contributing Guidelines
 
-Want to contribute to this project? You may clone or fork the project in GitHub. Note the licesing information below.
+Want to contribute to this project? You may clone or fork the project in GitHub. Note the licesing information referred in this file.
 
 ## Test Instructions
 
