@@ -153,7 +153,9 @@ function promptEmployeeQuestions() {
 //promptStartQuestions();
 //
 teamRoster.push(new Manager("Employee1", "1", "Email1", "1"));
-teamRoster.push(new Engineer("Employee2", "2", "Email2", "GitHub"));
+teamRoster.push(
+  new Engineer("Employee2", "2", "japinell@yahoo.com", "japinell")
+);
 teamRoster.push(new Intern("Employee3", "3", "Email3", "School"));
 //
 const fileName = "roster.html";

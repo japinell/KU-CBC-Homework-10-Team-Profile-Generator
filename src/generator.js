@@ -201,7 +201,12 @@ class Generator {
         <ul class="list-group">
           <li class="list-group-item">ID: <span>${emp.getId()}</span></li>
           <li class="list-group-item">
-            Email: <span id="empEMail">${emp.getEmail()}</span>
+            Email: <span><a
+            href="mailto:${emp.getEmail()}"
+            target="_blank"
+            class="email"
+            >${emp.getEmail()}</a
+          ></span>
           </li>
           <li class="list-group-item">`;
       //
@@ -213,7 +218,12 @@ class Generator {
       } else if (emp.getRole() === "E") {
         //
         rosterHTML += `
-              GitHub: <span>${emp.getGitHub()}</span>`;
+              GitHub: <span><a
+              href="https://github.com/${emp.getGitHub()}"
+              target="_blank"
+              class="email"
+              >${emp.getGitHub()}</a
+            ></span>`;
         //
       } else {
         //
