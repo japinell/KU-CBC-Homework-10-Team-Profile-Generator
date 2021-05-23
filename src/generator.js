@@ -131,32 +131,30 @@ class Generator {
   //
   getRosterHTML() {
     //
-    let rosterHTML = `<!-- Main -->
+    let rosterHTML = `
+    <!-- Main -->
     <main>
-      <!-- Team Roster -->
-      <section id="roster">
-        <!-- Header -->
-        <h1 class="display-4 text-center">
-          Team Roster
-          <button
-            class="btn btn-primary"
-            type="button"
-            data-toggle="collapse"
-            data-target="#myTeamRoster"
-            aria-expanded="false"
-            aria-controls="myTeamRoster"
-            id="showMyTeamRoster"
-          >
-            <i
-              class="fas fa-chevron-up"
-              aria-hidden="true"
-              id="showMyTeamRosterIcon"
-            ></i>
-          </button>
-        </h1>
-        <!-- End of Header -->
-        <!-- Team Members -->
-        <div class="row no-gutters">`;
+      <!-- Header -->
+      <h1 class="display-4 text-center">
+        Team Roster
+        <button
+          class="btn btn-primary"
+          type="button"
+          data-toggle="collapse"
+          data-target="#myTeamRoster"
+          aria-expanded="false"
+          aria-controls="myTeamRoster"
+          id="showMyTeamRoster"
+        >
+          <i
+            class="fas fa-chevron-up"
+            aria-hidden="true"
+            id="showMyTeamRosterIcon"
+          ></i>
+        </button>
+      </h1>
+      <!-- End of Header -->
+      <div class="row no-gutters">`;
     //
     for (let i = 0, emp; i < this.roster.length; i++) {
       //
@@ -167,8 +165,37 @@ class Generator {
       //
       rosterHTML += `<div class="col-3 card">
       <div class="card-header text-white bg-primary">
-        <p>${emp.getName()}</p>
-        <p>${emp.getRoleName()}</p>
+        <p class="m-0">${emp.getName()}</p>
+        <p class="m-0">`;
+      //
+      if (emp.getRole() === "M") {
+        //
+        rosterHTML += `
+          <i class="fas fa-mug-hot"></i
+          >`;
+        //
+      } else if (emp.getRole() === "E") {
+        //
+        rosterHTML += `
+          <i class="fas fa-glasses"></i
+          >`;
+        //
+      } else if (emp.getRole() === "I") {
+        //
+        rosterHTML += `
+          <i class="fas fa-user-graduate"></i
+          >`;
+        //
+      } else {
+        //
+        rosterHTML += `
+          <i class="fas fa-user-graduate"></i
+          >`;
+        //
+      }
+      //
+      rosterHTML += `<span class="pl-2">${emp.getRoleName()}</span>
+        </p>
       </div>
       <div class="card-body">
         <ul class="list-group">
@@ -204,7 +231,6 @@ class Generator {
     }
     //
     rosterHTML += `</div>
-    </section>
     <!-- End of Team Members -->
   </main>
   <!-- End of Main -->`;
