@@ -1,32 +1,4 @@
-//
-const fs = require("fs");
-const util = require("util");
-const writeFileAsync = util.promisify(fs.writeFile); // WriteFile using promises instead of a callback function
-//
-// Generate markdown for team roster
-//
-class Generator {
-  // Constructors
-  constructor(fileName, roster) {
-    this.fileName = fileName;
-    this.roster = roster;
-  }
-  // Methods
-  getFileName() {
-    //
-    return this.fileName;
-    //
-  }
-  //
-  getRoster() {
-    //
-    return this.roster;
-    //
-  }
-  //
-  getHeaderHTML() {
-    //
-    return `<!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="en">
       <head>
         <meta charset="UTF-8" />
@@ -97,41 +69,7 @@ class Generator {
           </nav>
           <!-- End of Menu -->
         </header>
-        <!-- End of Header -->`;
-    //
-  }
-  //
-  getFooterHTML() {
-    //
-    return ` <!-- JavaScript Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
-      integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://unpkg.com/dayjs@1.10.4/dayjs.min.js"></script>
-    <script src="https://unpkg.com/dayjs@1.10.4/plugin/advancedFormat.js"></script>
-    <script src="https://unpkg.com/dayjs@1.10.4/plugin/weekOfYear.js"></script>
-    <script>
-      dayjs.extend(window.dayjs_plugin_advancedFormat);
-      dayjs.extend(window.dayjs_plugin_weekOfYear);
-    </script>
-    <script src="./js/script.js"></script>
-    <!-- End of JavaScript Libraries -->
-  </body>
-</html>`;
-    //
-  }
-  //
-  getRosterHTML() {
-    //
-    let rosterHTML = `<!-- Main -->
+        <!-- End of Header --><!-- Main -->
     <main>
       <!-- Team Roster -->
       <section id="roster">
@@ -156,89 +94,78 @@ class Generator {
         </h1>
         <!-- End of Header -->
         <!-- Team Members -->
-        <div class="row no-gutters">`;
-    //
-    for (let i = 0, emp; i < this.roster.length; i++) {
-      //
-      // console.log("Emp = ");
-      // console.log(emp);
-      //
-      emp = this.roster[i];
-      //
-      rosterHTML += `<div class="col-3 card">
+        <div class="row no-gutters"><div class="col-3 card">
       <div class="card-header text-white bg-primary">
-        <p>${emp.getName()}</p>
-        <p>${emp.getRoleName()}</p>
+        <p>Employee1</p>
+        <p>Manager</p>
       </div>
       <div class="card-body">
         <ul class="list-group">
-          <li class="list-group-item">ID: <span>${emp.getId()}</span></li>
+          <li class="list-group-item">ID: <span>1</span></li>
           <li class="list-group-item">
-            Email: <span id="empEMail">${emp.getEmail()}</span>
+            Email: <span id="empEMail">Email1</span>
           </li>
-          <li class="list-group-item">`;
-      //
-      if (emp.getRole() === "M") {
-        //
-        rosterHTML += `
-              Office Number: <span>${emp.getOfficeNumber()}</span>`;
-        //
-      } else if (emp.getRole() === "E") {
-        //
-        rosterHTML += `
-              GitHub: <span>${emp.getGitHub()}</span>`;
-        //
-      } else {
-        //
-        rosterHTML += `
-              School: <span>${emp.getSchool()}</span>`;
-        //
-      }
-      //
-      rosterHTML += `
+          <li class="list-group-item">
+              Office Number: <span>1</span>
         </li>
       </ul>
     </div>
-  </div>`;
-      //
-    }
-    //
-    rosterHTML += `</div>
+  </div><div class="col-3 card">
+      <div class="card-header text-white bg-primary">
+        <p>Employee2</p>
+        <p>Engineer</p>
+      </div>
+      <div class="card-body">
+        <ul class="list-group">
+          <li class="list-group-item">ID: <span>2</span></li>
+          <li class="list-group-item">
+            Email: <span id="empEMail">Email2</span>
+          </li>
+          <li class="list-group-item">
+              GitHub: <span>GitHub</span>
+        </li>
+      </ul>
+    </div>
+  </div><div class="col-3 card">
+      <div class="card-header text-white bg-primary">
+        <p>Employee3</p>
+        <p>Intern</p>
+      </div>
+      <div class="card-body">
+        <ul class="list-group">
+          <li class="list-group-item">ID: <span>3</span></li>
+          <li class="list-group-item">
+            Email: <span id="empEMail">Email3</span>
+          </li>
+          <li class="list-group-item">
+              School: <span>School</span>
+        </li>
+      </ul>
+    </div>
+  </div></div>
     </section>
     <!-- End of Team Members -->
   </main>
-  <!-- End of Main -->`;
-    //
-    return rosterHTML;
-    //
-  }
-  //
-  generateFullHTML() {
-    //
-    return this.getHeaderHTML() + this.getRosterHTML() + this.getFooterHTML();
-    //
-  }
-  //
-  writeToFile() {
-    //
-    writeFileAsync(this.fileName, this.generateFullHTML())
-      .then(() => console.log(`Successfully created file ${this.fileName}.`))
-      .catch((err) => console.log(`Error: ${err}`));
-    //
-  }
-  //
-  writeToFile2() {
-    //
-    fs.writeFile(this.fileName, this.generateFullHTML(), (err) =>
-      err
-        ? console.error(`Error: ${err}`)
-        : console.log(`Successfully created file ${this.fileName}.`)
-    );
-    //
-  }
-  //
-}
-
-module.exports = {
-  Generator,
-};
+  <!-- End of Main --> <!-- JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+      integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/dayjs@1.10.4/dayjs.min.js"></script>
+    <script src="https://unpkg.com/dayjs@1.10.4/plugin/advancedFormat.js"></script>
+    <script src="https://unpkg.com/dayjs@1.10.4/plugin/weekOfYear.js"></script>
+    <script>
+      dayjs.extend(window.dayjs_plugin_advancedFormat);
+      dayjs.extend(window.dayjs_plugin_weekOfYear);
+    </script>
+    <script src="./js/script.js"></script>
+    <!-- End of JavaScript Libraries -->
+  </body>
+</html>

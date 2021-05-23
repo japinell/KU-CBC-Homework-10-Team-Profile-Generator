@@ -110,9 +110,10 @@ function promptStartQuestions() {
 //
 function promptEmployeeQuestions() {
   //
-  inquirer.prompt(employeeQuestions).then((answers) => {
+  inquirer.prompt(employeeQuestions).then((employeeAnswers) => {
     //
-    const { name, id, email, empType, officeNumber, gitHub, school } = answers;
+    const { name, id, email, empType, officeNumber, gitHub, school } =
+      employeeAnswers;
     //
     // Employee type is guaranteed to be any of the following
     //
@@ -120,28 +121,24 @@ function promptEmployeeQuestions() {
       //
       case "M":
         teamRoster.push(new Manager(name, id, email, officeNumber));
+        break;
       case "E":
         teamRoster.push(new Engineer(name, id, email, gitHub));
+        break;
       case "I":
         teamRoster.push(new Intern(name, id, email, school));
+        break;
       //
     }
     //
-    //teamRoster.push(answers);
-    //
-    console.log(answers);
-    if (answers.more) {
+    if (employeeAnswers.more) {
       //
       promptEmployeeQuestions();
       //
     } else {
       //
-      const fileName = answers.fileName;
+      const fileName = employeeAnswers.fileName;
       const generator = new Generator(fileName, teamRoster);
-      //
-      //   const headerHTML = generator.getHeaderHTML();
-      //   const footerHTML = generator.getFooterHTML();
-      //   const rosterHTML = generator.getRosterHTML();
       //
       generator.writeToFile();
       //
