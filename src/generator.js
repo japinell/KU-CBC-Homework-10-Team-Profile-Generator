@@ -154,7 +154,7 @@ class Generator {
         </button>
       </h1>
       <!-- End of Header -->
-      <div class="row no-gutters">`;
+      <div id="myTeamRoster" class="card-deck no-gutters d-flex justify-content-center">`;
     //
     for (let i = 0, emp; i < this.roster.length; i++) {
       //
@@ -189,7 +189,7 @@ class Generator {
       } else {
         //
         rosterHTML += `
-          <i class="fas fa-user-graduate"></i
+          <i class="fas fa-users-cog"></i
           >`;
         //
       }
